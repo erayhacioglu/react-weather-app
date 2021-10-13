@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Navbar from './components/Navbar';
+import Search from './components/Search';
+import Weather from './components/Weather';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const [weather, setWeather] = useState();
+	const [inputText, setInputText] = useState('');
+	
+
+	const clearInput = () => {
+		setInputText('');
+		setWeather();
+	};
+
+	return (
+		<div
+			className={`wrapper ${
+				weather ? (weather.current.temp_c <= 15 ? 'cold' : 'warm') : ''
+			}`}
+		>
+			<Navbar />
+			<Search
+				setWeather={setWeather}
+				inputText={inputText}
+				setInputText={setInputText}
+				clearInput={clearInput}
+			/>
+			<Weather weather={weather} />
+		</div>
+	);
+};
 
 export default App;
