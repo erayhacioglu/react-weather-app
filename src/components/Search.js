@@ -6,7 +6,7 @@ const Search = ({ setWeather, inputText, setInputText, clearInput }) => {
 	const getWeather = async (e) => {
 		e.preventDefault();
 		const { data } = await axios.get(
-			`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${inputText}&aqi=no`
+			`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${inputText}&aqi=no`
 		);
 
 		setWeather(data);
